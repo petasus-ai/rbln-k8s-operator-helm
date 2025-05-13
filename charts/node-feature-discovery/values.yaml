@@ -1,5 +1,5 @@
 image:
-  repository: quay.io/edgestack/node-feature-discovery:v0.17.3
+  repository: registry.k8s.io/nfd/node-feature-discovery
   # This should be set to 'IfNotPresent' for released version
   pullPolicy: IfNotPresent
   # tag, if defined will use the given image tag, else Chart.AppVersion will be used
