@@ -1,0 +1,14 @@
+apiVersion: v2
+name: rbln-k8s-operator
+description: A Helm chart for Rebellions K8S Operator
+type: application
+version: 0.1.0
+appVersion: "latest"
+sources:
+  - https://github.com/rebellions-sw/rbln-k8s-operator
+
+dependencies:
+  - name: node-feature-discovery
+    version: v0.17.3
+    repository: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+    condition: nfd.enabled

@@ -1,0 +1,62 @@
+# Default values for rbln-k8s-operator.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nfd:
+  enabled: true
+
+name: rebellions
+
+operator:
+  image:
+    repository: quay.io/edgestack/rbln-k8s-operator
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicas: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 128Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+  service:
+    port: 8443
+    targetPort: 8443
+
+daemonsets: {}
+
+devicePlugin:
+  enabled: true
+  image: quay.io/edgestack/rbln-device-plugin
+  imagePullPolicy: IfNotPresent
+  version: latest
+
+metricsExporter:
+  enabled: true
+  image: quay.io/edgestack/rbln-metrics-exporter
+  imagePullPolicy: IfNotPresent
+  version: latest
+
+npuFeatureDiscovery:
+  enabled: true
+  image: quay.io/edgestack/rbln-npu-feature-discovery
+  imagePullPolicy: IfNotPresent
+  version: latest
+
+sandboxDevicePlugin:
+  enabled: true
+  image: quay.io/edgestack/rbln-device-plugin
+  imagePullPolicy: IfNotPresent
+  priorityClassName: system-node-critical
+  version: latest
+  vfioChecker:
+    image: redhat/ubi8
+    version: "8.10"
+
+vfioManager:
+  enabled: true
+  image: quay.io/edgestack/redhat/ubi8
+  imagePullPolicy: IfNotPresent
+  priorityClassName: system-node-critical
+  version: "8.10"

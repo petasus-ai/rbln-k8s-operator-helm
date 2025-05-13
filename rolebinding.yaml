@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rbln-operator
+  labels:
+    {{- include "rbln-k8s-operator.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: rbln-operator
+subjects:
+  - kind: ServiceAccount
+    name: rbln-operator-controller-manager
+    namespace: {{ .Release.Namespace }}
