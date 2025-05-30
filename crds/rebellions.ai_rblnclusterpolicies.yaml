@@ -6393,6 +6393,13 @@ spec:
                       the DaemonSet
                     type: string
                 type: object
+              workloadType:
+                default: container
+                description: WorkloadType specifies the type of default workload.
+                enum:
+                - container
+                - vm-passthrough
+                type: string
             required:
             - devicePlugin
             - metricsExporter

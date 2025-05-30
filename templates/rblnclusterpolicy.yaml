@@ -6,6 +6,9 @@ metadata:
   name: rbln-cluster-policy
   namespace: {{ .Values.operator.namespace }}
 spec:
+  {{- if .Values.workloadType }}
+  workloadType: {{ .Values.workloadType }}
+  {{- end }}
   daemonsets: {{ toYaml .Values.daemonsets | nindent 4 }}
   devicePlugin:
     enabled: {{ .Values.devicePlugin.enabled }}

@@ -6,6 +6,7 @@ nfd:
   enabled: true
 
 name: rebellions
+workloadType: "container"
 
 operator:
   image:
