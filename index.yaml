@@ -3,14 +3,14 @@ entries:
   rbln-k8s-operator:
   - apiVersion: v2
     appVersion: 3.4.0
-    created: "2025-05-20T08:14:38.369918+09:00"
+    created: "2025-06-10T14:50:22.674828+09:00"
     dependencies:
     - condition: nfd.enabled
       name: node-feature-discovery
       repository: https://kubernetes-sigs.github.io/node-feature-discovery/charts
       version: v0.17.3
     description: A Helm chart for Rebellions K8S Operator
-    digest: 709cfb88fc87584f7b16f9b8dc00336c4f2f44eaae539a76d1d9a0e08fa6c4f8
+    digest: bb99870c8747340ecab18aacd5961cc6870363c39581c927fb7a6284eea1ecd2
     name: rbln-k8s-operator
     sources:
     - https://github.com/rebellions-sw/rbln-k8s-operator
@@ -18,4 +18,4 @@ entries:
     urls:
     - rbln-k8s-operator-3.4.0.tgz
     version: 3.4.0
-generated: "2025-05-20T08:14:38.366438+09:00"
+generated: "2025-06-10T14:50:22.671151+09:00"
