@@ -1,4 +1,4 @@
-# Default values for rbln-k8s-operator.
+# Default values for rbln-npu-operator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -6,12 +6,12 @@ nfd:
   enabled: true
 
 name: rebellions
-workloadType: "container"
+workloadType: "vm-passthrough"
 
 operator:
   image:
-    repository: quay.io/edgestack/rbln-k8s-operator
-    tag: latest
+    repository: quay.io/edgestack/rbln-npu-operator
+    tag: v0.0.1
     pullPolicy: IfNotPresent
   replicas: 1
   resources:

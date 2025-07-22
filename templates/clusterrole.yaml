@@ -3,7 +3,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    {{ include "rbln-k8s-operator.labels" . | nindent 4 }}
+    {{ include "rbln-npu-operator.labels" . | nindent 4 }}
   name: rbln-operator
 rules:
   - apiGroups:
@@ -11,6 +11,7 @@ rules:
     resources:
       - configmaps
       - nodes
+      - pods
       - services
     verbs:
       - create
@@ -58,23 +59,3 @@ rules:
       - get
       - patch
       - update
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  labels:
-    {{ include "rbln-k8s-operator.labels" . | nindent 4 }}
-  name: rbln-operator-metrics-auth
-rules:
-  - apiGroups:
-      - authentication.k8s.io
-    resources:
-      - tokenreviews
-    verbs:
-      - create
-  - apiGroups:
-      - authorization.k8s.io
-    resources:
-      - subjectaccessreviews
-    verbs:
-      - create

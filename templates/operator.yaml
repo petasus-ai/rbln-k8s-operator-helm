@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    {{ include "rbln-k8s-operator.labels" . | nindent 4 }}
+    {{ include "rbln-npu-operator.labels" . | nindent 4 }}
     control-plane: controller-manager
   name: rbln-operator-controller-manager
 spec:
   replicas: {{ .Values.operator.replicas }}
   selector:
     matchLabels:
-      {{ include "rbln-k8s-operator.selectorLabels" . | nindent 6 }}
+      {{ include "rbln-npu-operator.selectorLabels" . | nindent 6 }}
       control-plane: controller-manager
   template:
     metadata:
       annotations:
         kubectl.kubernetes.io/default-container: manager
       labels:
-        {{ include "rbln-k8s-operator.selectorLabels" . | nindent 8 }}
+        {{ include "rbln-npu-operator.selectorLabels" . | nindent 8 }}
         control-plane: controller-manager
     spec:
       affinity:

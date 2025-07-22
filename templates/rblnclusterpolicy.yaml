@@ -2,13 +2,10 @@ apiVersion: rebellions.ai/v1beta1
 kind: RBLNClusterPolicy
 metadata:
   labels:
-    {{ include "rbln-k8s-operator.labels" . | nindent 4 }}
+    {{ include "rbln-npu-operator.labels" . | nindent 4 }}
   name: rbln-cluster-policy
   namespace: {{ .Values.operator.namespace }}
 spec:
-  {{- if .Values.workloadType }}
-  workloadType: {{ .Values.workloadType }}
-  {{- end }}
   daemonsets: {{ toYaml .Values.daemonsets | nindent 4 }}
   devicePlugin:
     enabled: {{ .Values.devicePlugin.enabled }}

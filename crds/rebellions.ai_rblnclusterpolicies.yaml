@@ -6481,18 +6481,27 @@ spec:
                   - type
                   type: object
                 type: array
-              namespace:
-                description: Namespace indicates a namespace in which the operator
-                  is installed
-                type: string
-              state:
-                description: State indicates status of RBLNClusterPolicy
-                enum:
-                - ready
-                - notReady
-                type: string
-            required:
-            - state
+              nodes:
+                items:
+                  properties:
+                    name:
+                      description: Name of node
+                      type: string
+                    state:
+                      description: State indicates whether all the component are provisioned
+                        on the node
+                      enum:
+                      - ready
+                      - notReady
+                      type: string
+                    workloadType:
+                      description: Workload type of node.
+                      type: string
+                  required:
+                  - name
+                  - state
+                  type: object
+                type: array
             type: object
         type: object
     served: true
