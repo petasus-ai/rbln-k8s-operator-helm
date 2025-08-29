@@ -32,7 +32,7 @@ spec:
             - --leader-elect
             - --health-probe-bind-address=:8081
           command:
-            - /manager
+            - /usr/bin/npu-operator
           env:
             - name: OPERATOR_NAMESPACE
               valueFrom:

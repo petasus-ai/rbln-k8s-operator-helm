@@ -1970,7 +1970,8 @@ spec:
                     type: boolean
                   image:
                     default: rebellions/k8s-device-plugin
-                    description: Image is image name including container registry
+                    description: RBLN Device Plugin image name
+                    pattern: '[a-zA-Z0-9\-]+'
                     type: string
                   imagePullPolicy:
                     default: IfNotPresent
@@ -1992,6 +1993,38 @@ spec:
                     description: PriorityClassName specifies the priority class for
                       the DaemonSet pods
                     type: string
+                  resourceList:
+                    default:
+                    - productCardNames:
+                      - RBLN-CA12
+                      - RBLN-CA22
+                      - RBLN-CA25
+                      resourceName: ATOM
+                      resourcePrefix: rebellions.ai
+                    description: ResourceList is the list of resources to be managed
+                      by the device plugin
+                    items:
+                      properties:
+                        productCardNames:
+                          default:
+                          - RBLN-CA12
+                          - RBLN-CA22
+                          - RBLN-CA25
+                          description: ProductCardNames is the name of the product
+                            card
+                          items:
+                            type: string
+                          type: array
+                        resourceName:
+                          default: ATOM
+                          description: ResourceName is the name of the resource
+                          type: string
+                        resourcePrefix:
+                          default: rebellions.ai
+                          description: ResourcePrefix is the prefix of the resource
+                          type: string
+                      type: object
+                    type: array
                   resources:
                     description: Resources specifies the resource requirements for
                       the DaemonSet pods
@@ -2090,8 +2123,7 @@ spec:
                     type: array
                   version:
                     default: latest
-                    description: Version is the container image tag to be used in
-                      the DaemonSet
+                    description: RBLN Device Plugin image tag
                     type: string
                 type: object
               metricsExporter:
@@ -3038,7 +3070,8 @@ spec:
                     type: boolean
                   image:
                     default: rebellions/rbln-metrics-exporter
-                    description: Image is image name including container registry
+                    description: RBLN Metrics Exporter image name
+                    pattern: '[a-zA-Z0-9\-]+'
                     type: string
                   imagePullPolicy:
                     default: IfNotPresent
@@ -3158,14 +3191,13 @@ spec:
                     type: array
                   version:
                     default: latest
-                    description: Version is the container image tag to be used in
-                      the DaemonSet
+                    description: RBLN Metrics Exporter image tag
                     type: string
                 required:
                 - version
                 type: object
               name:
-                default: rebellions
+                default: rbln
                 description: BaseName of rbln components
                 type: string
               namespace:
@@ -4115,7 +4147,8 @@ spec:
                     type: boolean
                   image:
                     default: rebellions/rbln-npu-feature-discovery
-                    description: Image is image name including container registry
+                    description: RBLN NPU Feature Discovery image name
+                    pattern: '[a-zA-Z0-9\-]+'
                     type: string
                   imagePullPolicy:
                     default: IfNotPresent
@@ -4235,8 +4268,7 @@ spec:
                     type: array
                   version:
                     default: latest
-                    description: Version is the container image tag to be used in
-                      the DaemonSet
+                    description: RBLN NPU Feature Discovery image tag
                     type: string
                 required:
                 - version
@@ -5185,7 +5217,8 @@ spec:
                     type: boolean
                   image:
                     default: rebellions/k8s-device-plugin
-                    description: Image is image name including container registry
+                    description: RBLN Sandbox Device Plugin image name
+                    pattern: '[a-zA-Z0-9\-]+'
                     type: string
                   imagePullPolicy:
                     default: IfNotPresent
@@ -5208,6 +5241,38 @@ spec:
                     description: PriorityClassName specifies the priority class for
                       the DaemonSet pods
                     type: string
+                  resourceList:
+                    default:
+                    - productCardNames:
+                      - RBLN-CA12
+                      - RBLN-CA22
+                      - RBLN-CA25
+                      resourceName: ATOM
+                      resourcePrefix: rebellions.ai
+                    description: ResourceList is the list of resources to be managed
+                      by the device plugin
+                    items:
+                      properties:
+                        productCardNames:
+                          default:
+                          - RBLN-CA12
+                          - RBLN-CA22
+                          - RBLN-CA25
+                          description: ProductCardNames is the name of the product
+                            card
+                          items:
+                            type: string
+                          type: array
+                        resourceName:
+                          default: ATOM
+                          description: ResourceName is the name of the resource
+                          type: string
+                        resourcePrefix:
+                          default: rebellions.ai
+                          description: ResourcePrefix is the prefix of the resource
+                          type: string
+                      type: object
+                    type: array
                   resources:
                     description: Resources specifies the resource requirements for
                       the DaemonSet pods
@@ -5306,21 +5371,20 @@ spec:
                     type: array
                   version:
                     default: latest
-                    description: Version is the container image tag to be used in
-                      the DaemonSet
+                    description: RBLN Sandbox Device Plugin image tag
                     type: string
                   vfioChecker:
                     description: VFIOChecker specifies the configuration for the VFIO
                       bind status checker
                     properties:
                       image:
-                        default: redhat/ubi8
-                        description: Image is image name including container registry
+                        default: rebellions/rbln-vfio-manager
+                        description: VFIO Checker image name
+                        pattern: '[a-zA-Z0-9\-]+'
                         type: string
                       version:
-                        default: "8.10"
-                        description: Version is the container image tag to be used
-                          in the DaemonSet
+                        default: latest
+                        description: VFIO Checker image tag
                         type: string
                     type: object
                 type: object
@@ -6267,8 +6331,9 @@ spec:
                       is enabled
                     type: boolean
                   image:
-                    default: redhat/ubi8
-                    description: Image is image name including container registry
+                    default: rebellions/rbln-vfio-manager
+                    description: RBLN VFIO Manager image name
+                    pattern: '[a-zA-Z0-9\-]+'
                     type: string
                   imagePullPolicy:
                     default: IfNotPresent
@@ -6388,9 +6453,8 @@ spec:
                       type: object
                     type: array
                   version:
-                    default: "8.10"
-                    description: Version is the container image tag to be used in
-                      the DaemonSet
+                    default: latest
+                    description: RBLN VFIO Manager image tag
                     type: string
                 type: object
               workloadType:
@@ -6482,6 +6546,7 @@ spec:
                   type: object
                 type: array
               nodes:
+                description: Nodes is a list of nodes and their status
                 items:
                   properties:
                     name:

@@ -3,7 +3,7 @@ kind: RoleBinding
 metadata:
   name: rbln-operator
   labels:
-    {{- include "rbln-npu-operator.labels" . | nindent 4 }}
+    {{ include "rbln-npu-operator.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

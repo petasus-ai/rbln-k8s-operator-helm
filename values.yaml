@@ -5,13 +5,13 @@
 nfd:
   enabled: true
 
-name: rebellions
+name: rbln
 workloadType: "vm-passthrough"
 
 operator:
   image:
     repository: quay.io/edgestack/rbln-npu-operator
-    tag: v0.0.1
+    tag: latest
     pullPolicy: IfNotPresent
   replicas: 1
   resources:
@@ -29,35 +29,51 @@ daemonsets: {}
 
 devicePlugin:
   enabled: true
-  image: quay.io/edgestack/rbln-device-plugin
+  image: rebellions/k8s-device-plugin
   imagePullPolicy: IfNotPresent
   version: latest
+  resourceList:
+  - productCardNames:
+    - RBLN-CA12
+    - RBLN-CA22
+    - RBLN-CA25
+    resourceName: ATOM
+    resourcePrefix: rebellions.ai
 
 metricsExporter:
   enabled: true
-  image: quay.io/edgestack/rbln-metrics-exporter
+  image: rebellions/rbln-metrics-exporter
   imagePullPolicy: IfNotPresent
   version: latest
 
 npuFeatureDiscovery:
   enabled: true
-  image: quay.io/edgestack/rbln-npu-feature-discovery
+  image: rebellions/rbln-npu-feature-discovery
   imagePullPolicy: IfNotPresent
   version: latest
 
 sandboxDevicePlugin:
   enabled: true
-  image: quay.io/edgestack/rbln-device-plugin
+  image: rebellions/k8s-device-plugin
   imagePullPolicy: IfNotPresent
   priorityClassName: system-node-critical
   version: latest
   vfioChecker:
-    image: redhat/ubi8
-    version: "8.10"
+    image: rebellions/rbln-vfio-manager
+    version: "latest"
+  resourceList:
+  - productCardNames:
+    - RBLN-CA12
+    resourceName: RBLNCA12_PF
+    resourcePrefix: rebellions.ai
+  - productCardNames:
+    - RBLN-CA25
+    resourceName: RBLNCA25_PF
+    resourcePrefix: rebellions.ai
 
 vfioManager:
   enabled: true
-  image: quay.io/edgestack/redhat/ubi8
+  image: rebellions/rbln-vfio-manager
   imagePullPolicy: IfNotPresent
   priorityClassName: system-node-critical
-  version: "8.10"
+  version: "latest"

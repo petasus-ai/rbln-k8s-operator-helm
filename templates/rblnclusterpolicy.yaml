@@ -12,6 +12,9 @@ spec:
     image: {{ .Values.devicePlugin.image }}
     imagePullPolicy: {{ .Values.devicePlugin.imagePullPolicy }}
     version: {{ .Values.devicePlugin.version }}
+    {{- if .Values.devicePlugin.resourceList }}
+    resourceList: {{ toYaml .Values.devicePlugin.resourceList | nindent 6 }}
+    {{- end }}
   metricsExporter:
     enabled: {{ .Values.metricsExporter.enabled }}
     image: {{ .Values.metricsExporter.image }}
@@ -32,6 +35,9 @@ spec:
     vfioChecker:
       image: {{ .Values.sandboxDevicePlugin.vfioChecker.image }}
       version: {{ .Values.sandboxDevicePlugin.vfioChecker.version | quote }}
+    {{- if .Values.sandboxDevicePlugin.resourceList }}
+    resourceList: {{ toYaml .Values.sandboxDevicePlugin.resourceList | nindent 6 }}
+    {{- end }}
   vfioManager:
     enabled: {{ .Values.vfioManager.enabled }}
     image: {{ .Values.vfioManager.image }}
